@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import ToDoList from "./ToDoList";
-
+import ToDoList from "./ToDoList.jsx";
+import AddIcon from "@material-ui/icons/Add";
+import Button from "@material-ui/core/Button";
+import "./App.css";
 
 const App = () => {
   const [inputList, setInputList] = useState("Buy apple");
@@ -16,6 +18,17 @@ const App = () => {
     });
     setInputList("");
   };
+
+  const deleteItems = (id) => {
+    console.log("Deleted");
+
+    setItems((oldItems) => {
+      return oldItems.filter((arrElem, index) => {
+        return index !== id;
+      });
+    });
+  };
+
   return (
     <div className="main_div">
       <div className="center_div">
@@ -24,18 +37,24 @@ const App = () => {
         <br />
         <input
           type="text"
-          placeholder="Add a Item"
+          placeholder="Add an Item"
           value={inputList}
           onChange={itemEvent}
         />
-        <button className="newBtn" onClick={listOfItems} > + </button>
-
+        <Button className="newBtn" onClick={listOfItems}>
+          <AddIcon />
+        </Button>
+        <br />
         <ol>
-          {/* <li> {inputList} </li> */}
-
-          {Items.map((itemval) => {
-            return <ToDoList text={itemval} />;
-
+          {Items.map((itemval, index) => {
+            return (
+              <ToDoList
+                key={index}
+                id={index}
+                text={itemval}
+                onSelect={deleteItems} // Ensure deleteItems is passed as onSelect prop
+              />
+            );
           })}
         </ol>
       </div>
