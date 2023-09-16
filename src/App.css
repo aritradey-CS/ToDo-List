@@ -157,3 +157,17 @@
      font-size:30px;
  
  }
+
+ .MuiButton-root {
+    background-color: #0486b9 !important;
+ }
+ .MuiButton-root:hover {
+    text-decoration: none;
+    background-color:#8566aa !important;
+}
+
+.MuiButton-text {
+    margin-left: 20px !important;
+    margin-top: -15px !important;
+    padding: 6px 8px !important;
+}
